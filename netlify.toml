@@ -1,0 +1,11 @@
+[build]
+command = "react-router build"
+publish = "build/client"
+
+[build.environment]
+NODE_VERSION = "24"
+
+[dev]
+command = "npm run dev"
+targetPort = 5173
+port = 8888

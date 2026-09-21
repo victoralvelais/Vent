@@ -1,0 +1,32 @@
+{
+  "name": "vent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "dev:netlify": "netlify dev",
+    "start": "npm run dev",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@react-router/node": "^8.0.0",
+    "isbot": "^5.1.43",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router": "^8.0.0"
+  },
+  "devDependencies": {
+    "@netlify/vite-plugin": "^3.0.1",
+    "@netlify/vite-plugin-react-router": "^4.0.0",
+    "@react-router/dev": "^8.0.0",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
+  }
+}
