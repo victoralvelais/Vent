@@ -70,6 +70,9 @@ type DiscordMessage = {
   edited_timestamp: string | null;
   author: DiscordAuthor;
   attachments: DiscordAttachment[];
+  // 0 = DEFAULT, 19 = REPLY; everything else is a system message.
+  type: number;
+  pinned?: boolean;
 };
 
 type SanitizedMessage = {
@@ -286,7 +289,16 @@ async function fetchFromDiscord(params: FetchMessagesParams): Promise<FetchMessa
 
   const raw = (await upstream.json()) as DiscordMessage[];
   console.log(`[vent.server] Discord returned ${raw.length} message(s)`);
-  const messages = raw.map(sanitize);
+  // Drops pinned messages and system messages
+  const userMessages = raw.filter(
+    (m) => !m.pinned && (m.type === 0 || m.type === 19),
+  );
+  if (userMessages.length !== raw.length) {
+    console.log(
+      `[vent.server] filtered out ${raw.length - userMessages.length} pinned/system message(s)`,
+    );
+  }
+  const messages = userMessages.map(sanitize);
 
   // A poll (`after` cursor set) returning nothing is the normal "no new
   // messages" case — return an empty result so the client's cursor is
