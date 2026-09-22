@@ -1,0 +1,14 @@
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Local Netlify folder
+.netlify
+
+# Local env files (never commit secrets)
+.env
+.env.local
+.env.*.local
